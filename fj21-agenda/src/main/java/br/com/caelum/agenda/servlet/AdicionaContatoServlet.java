@@ -2,6 +2,7 @@ package br.com.caelum.agenda.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,8 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.agenda.dao.ContatoDao;
+import br.com.caelum.agenda.model.Contato;
+import br.com.caelum.agende.jdbc.ConnectionFactory;
+
 @WebServlet("/adicionaContato")
 public class AdicionaContatoServlet extends HttpServlet {
+	
+	private Connection connection;
+	
 	
 	@Override
 	protected void service(HttpServletRequest request,
@@ -36,6 +44,16 @@ public class AdicionaContatoServlet extends HttpServlet {
 			out.println("Erro de conversão da data");
 			return;
 			}
+		
+		Contato contato = new Contato();
+		contato.setNome(nome);
+		contato.setEndereco(endereco);
+		contato.setEmail(email);
+		contato.setDataNascimento(dataNascimento);
+		
+		ContatoDao dao = new ContatoDao();
+		dao.adiciona(contato);
+		
 
 		
 		out.println("<html>");
