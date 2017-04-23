@@ -12,13 +12,14 @@ import java.util.List;
 import br.com.caelum.agenda.model.Contato;
 import br.com.caelum.agende.jdbc.ConnectionFactory;
 
-public class ContatoDao {
+public class ContatoDao{
 	
 	private Connection connection;
 	
-	public ContatoDao(){
+	public ContatoDao() {
 		this.connection = new ConnectionFactory().getConnection();
 	}
+	
 	
 	public void adiciona(Contato contato){
 		
@@ -36,6 +37,39 @@ public class ContatoDao {
 					contato.getDataNascimento().getTimeInMillis()));
 			
 			stmt.execute();
+			stmt.close();
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void alterar(Contato contato){
+		
+		String sql = "update contatos set nome=?,email=?,endereco=?,dataNascimento=? where id=?";
+		
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1,contato.getNome());
+			stmt.setString(2,contato.getEmail());
+			stmt.setString(3,contato.getEndereco());
+			stmt.setDate(4, new Date(contato.getDataNascimento().getTimeInMillis()));
+			stmt.setLong(5,contato.getId());
+			stmt.execute();
+			stmt.close();
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}	
+		
+	}
+	
+	public void remove(Contato contato){
+		
+		String sql = "delete from contatos where id=?";
+		
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1,contato.getId());
 			stmt.close();
 		}catch(SQLException e){
 			throw new RuntimeException(e);
@@ -72,5 +106,7 @@ public class ContatoDao {
 		}
 		
 	}
+
+
 	
 }
