@@ -18,9 +18,18 @@
 				<tr bgcolor="#${contato.id % 2 == 0 ? '00CED1' : '696969'}">
 					<td>${contato.id}</td>
 					<td>${contato.nome}</td>
-					<td>${contato.email}</td>
+					<td>
+						<c:choose>
+							<c:when test="${not empty contato.email}">
+								<a href="mailto:${contato.email}">${contato.email}</a>
+							</c:when>
+							<c:otherwise>
+								E-mail não informado
+							</c:otherwise>
+						</c:choose>
+					</td>
 					<td>${contato.endereco}</td>
-					<td>${contato.dataNascimento}</td> 
+					<td>${contato.dataNascimento.time}</td> 
 				</tr>	
 			</c:forEach>	
 		</table>
