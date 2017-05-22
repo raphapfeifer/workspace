@@ -11,6 +11,17 @@
     <artifactId>javax.servlet-api</artifactId>
     <version>3.1.0</version>
 </dependency>
+<dependency>  
+    <groupId>javax</groupId>    
+    <artifactId>javaee-web-api</artifactId>    
+    <version>7.0</version> <!-- Put here the version of your Java EE app, in my case 8.0 -->
+</dependency>
+<dependency>
+    <groupId>javax.el</groupId>
+    <artifactId>javax.el-api</artifactId>
+    <version>2.2.4</version>
+    <scope>provided</scope>
+ </dependency>
 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>
