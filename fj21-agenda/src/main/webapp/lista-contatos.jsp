@@ -20,7 +20,9 @@
 				</tr>
 				<c:forEach var="contato" items="${dao.lista}">
 				<tr bgcolor="#${contato.id % 2 == 0 ? '00CED1' : '696969'}">
-					<td>${contato.id}</td>
+					<td>
+						<a href="mvc?logica=RemoveContatoLogic&id=${contato.id}">Remover</a>					
+					</td>
 					<td>${contato.nome}</td>
 					<td>
 						<c:choose>

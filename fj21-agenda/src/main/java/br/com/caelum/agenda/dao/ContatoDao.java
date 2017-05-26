@@ -70,6 +70,7 @@ public class ContatoDao{
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setLong(1,contato.getId());
+			stmt.execute();
 			stmt.close();
 		}catch(SQLException e){
 			throw new RuntimeException(e);

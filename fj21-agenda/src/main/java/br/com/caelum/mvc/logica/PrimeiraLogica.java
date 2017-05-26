@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class PrimeiraLogica implements Logica {
 
-	public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("Executando a lógica...");
 		
