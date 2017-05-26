@@ -2,7 +2,6 @@ package br.com.caelum.agenda.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,14 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.agenda.dao.ContatoDao;
 import br.com.caelum.agenda.model.Contato;
-import br.com.caelum.agende.jdbc.ConnectionFactory;
 
 @WebServlet("/adicionaContato")
 public class AdicionaContatoServlet extends HttpServlet {
 	
-	private Connection connection;
-	
-	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
