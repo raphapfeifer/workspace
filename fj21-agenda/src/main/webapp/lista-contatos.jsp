@@ -8,8 +8,6 @@
 	
 		<c:import url="cabecalho.jsp"/>
 		
-		<jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
-		
 		<table>
 				<tr>
 					<th>ID</th>
@@ -18,7 +16,7 @@
 					<th>Endereço</th>
 					<th>Data de Nascimento</th>
 				</tr>
-				<c:forEach var="contato" items="${dao.lista}">
+				<c:forEach var="contato" items="${contatos}">
 				<tr bgcolor="#${contato.id % 2 == 0 ? '00CED1' : '696969'}">
 					<td>
 						<a href="mvc?logica=RemoveContatoLogic&id=${contato.id}">Remover</a>					
@@ -38,7 +36,8 @@
 					<td><fmt:formatDate value="${contato.dataNascimento.time}" pattern="dd/MM/yyyy"/></td> 
 				</tr>	
 			</c:forEach>	
-		</table>
+		</table><br />
+		<input type="submit" value="Adiciona Contato" onclick="window.location.href='adiciona-contato.jsp'"/>
 		<c:import url="rodape.jsp"/>
 	</body>
 </html>
