@@ -21,7 +21,10 @@
 					<td>
 						<a href="mvc?logica=RemoveContatoLogic&id=${contato.id}">Remover</a>					
 					</td>
-					<td>${contato.nome}</td>
+					<td>
+						<a href="mvc?logica=AlteraContatoLogic&nome=${contato.nome}&endereco=${contato.endereco}
+						&email=${contato.email}&dataNascimento=${contato.dataNascimento.time}" method="PUT">${contato.nome}</a>
+					</td>
 					<td>
 						<c:choose>
 							<c:when test="${not empty contato.email}">

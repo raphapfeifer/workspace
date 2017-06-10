@@ -1,31 +1,21 @@
-package br.com.caelum.agenda.servlet;
+package br.com.caelum.mvc.logica;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.agenda.dao.ContatoDao;
 import br.com.caelum.agenda.model.Contato;
 
-@WebServlet("/adicionaContato")
-public class AdicionaContatoServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
+public class AtualizaContatoLogic implements Logica {
 
-	@Override
-	protected void service(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
+	public String executa(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		
 		String nome = request.getParameter("nome");
 		String endereco = request.getParameter("endereco");
@@ -39,7 +29,6 @@ public class AdicionaContatoServlet extends HttpServlet {
 			dataNascimento.setTime(date);
 		}catch(ParseException e){
 			System.out.println("Erro de conversão da data");
-			return;
 			}
 		
 		Contato contato = new Contato();
@@ -49,11 +38,15 @@ public class AdicionaContatoServlet extends HttpServlet {
 		contato.setDataNascimento(dataNascimento);
 		
 		ContatoDao dao = new ContatoDao();
-		dao.adiciona(contato);
+		dao.alterar(contato);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/contato-adicionado.jsp");
-		rd.forward(request,response);
+		/*RequestDispatcher rd = request.getRequestDispatcher("/contato-adicionado.jsp");
+		rd.forward(request,response);*/
+		return "/WEB-INF/jsp/contato-atualizado.jsp" ;
+				
 		
 	}
+	
+	
 
 }
